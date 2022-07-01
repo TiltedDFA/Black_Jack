@@ -92,7 +92,7 @@ void Game::display_all_cards(const std::vector<card_template>& cards)
 }
 bool Game::compare_card_type(const card_template& card1, const card_template& card2)
 {
-	return (static_cast<int>(card1.m_type) < static_cast<int>(card2.m_type));
+	return (static_cast<int>(card1.m_type) > static_cast<int>(card2.m_type));
 }
 int Game::get_card_total(std::vector<card_template>cards)
 {
