@@ -2,21 +2,20 @@
 #include "card_functions.h"
 int main()
 {
-    std::vector<card_template> deck;
+    std::vector<card_template> deck, computer_cards, user_cards;//Creates 3 storages for cards
 	Game::set_up_deck(deck);//shuffles and initalizes values for deck
-    std::vector<card_template> computer_cards;
-    std::vector<card_template> user_cards;
-   
+     
     user_cards.push_back(Game::deal_card(deck));
     user_cards.push_back(Game::deal_card(deck));//adds two cards to the user's collection
 
     bool is_user_turn = true;
     std::string u_input;
-    while (true)
+
+    while (true)//Will repeat indefinitely untill a break; is hit.
     {
         if(is_user_turn)
         {
-            if (Game::get_card_total(user_cards) > 21)
+            if (Game::get_card_total(user_cards) > 21)//Checks whether the user has gone bust
             {
                 std::cout << "Your cards are: " << std::endl;
                 Game::display_all_cards(user_cards);
@@ -45,7 +44,7 @@ int main()
             if(Game::get_card_total(computer_cards) > 21)
             {
                 std::cout << "The computer's gone bust! You win\n";
-                break;
+                break;//due to the break; statements, else if is not needed.
             }
             if(Game::get_card_total(computer_cards) > Game::get_card_total(user_cards))
             {
