@@ -23,7 +23,7 @@ card_template Game::deal_card(std::vector<card_template>& deck)
 }
 std::string Game::card_to_string(const card_template& card)
 {
-	std::string temp;
+	std::string temp{};
 	switch (card.m_type)
 	{
 	case card_type::ACE:
@@ -90,19 +90,18 @@ void Game::display_all_cards(const std::vector<card_template>& cards)
 		std::cout << i+1 << ". " << card_to_string(cards[i]) << std::endl;
 	}
 }
-bool Game::compare_card_type(const card_template& card1, const card_template& card2)
-{
-	return (static_cast<int>(card1.m_type) > static_cast<int>(card2.m_type));
-}
 int Game::get_card_total(std::vector<card_template>cards)
 {
-	std::sort(cards.begin(), cards.end(),compare_card_type);
+	std::sort(cards.begin(), cards.end(),
+		[&](const card_template card1,const card_template card2)	{
+			return (static_cast<int>(card1.m_type) > static_cast<int>(card2.m_type));
+	});
 	int r_total = 0;
 	for(const auto& i : cards)
 	{
 		if(static_cast<int>(i.m_type) < 10 && static_cast<int>(i.m_type) != 0)
 		{
-			r_total += (static_cast<int>(i.m_type)+1);
+			r_total += static_cast<int>(i.m_type)+1;
 		}
 		else if(static_cast<int>(i.m_type)!= 0)
 		{
