@@ -2,13 +2,11 @@
 #include "card_functions.h"
 int main()
 {
-    std::vector<card_template> deck;
-	Game::set_up_deck(deck);//shuffles and initalizes values for deck
-    std::vector<card_template> computer_cards;
-    std::vector<card_template> user_cards;
+    std::vector<card_template> deck, computer_cards, user_cards;
+	Game::set_up_deck(deck);
    
     user_cards.push_back(Game::deal_card(deck));
-    user_cards.push_back(Game::deal_card(deck));//adds two cards to the user's collection
+    user_cards.push_back(Game::deal_card(deck));
 
     bool is_user_turn = true;
     std::string u_input;
