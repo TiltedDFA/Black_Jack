@@ -85,9 +85,9 @@ std::string Game::card_to_string(const card_template& card)
 }
 void Game::display_all_cards(const std::vector<card_template>& cards)
 {
-	for(int i = 0; i < cards.size(); ++i)
+	for(auto i = cards.cbegin(); i < cards.cend(); ++i)
 	{
-		std::cout << i+1 << ". " << card_to_string(cards[i]) << std::endl;
+		std::cout << (i-cards.cbegin()+1) << ". " << card_to_string(*i) << std::endl;
 	}
 }
 int Game::get_card_total(std::vector<card_template>cards)
@@ -97,13 +97,13 @@ int Game::get_card_total(std::vector<card_template>cards)
 			return (static_cast<int>(card1.m_type) > static_cast<int>(card2.m_type));
 	});
 	int r_total = 0;
-	for(const auto& i : cards)
+	for(auto i = cards.cbegin(); i < cards.cend(); ++i)
 	{
-		if(static_cast<int>(i.m_type) < 10 && static_cast<int>(i.m_type) != 0)
+		if(static_cast<int>(i->m_type) < 10 && static_cast<int>(i->m_type) != 0)
 		{
-			r_total += static_cast<int>(i.m_type)+1;
+			r_total += static_cast<int>(i->m_type)+1;
 		}
-		else if(static_cast<int>(i.m_type)!= 0)
+		else if(static_cast<int>(i->m_type)!= 0)
 		{
 			r_total += 10;
 		}
