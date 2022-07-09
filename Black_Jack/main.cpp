@@ -1,15 +1,14 @@
-
 #include "card_functions.h"
 int main()
 {
     std::vector<card_template> deck, computer_cards, user_cards;
 	Game::set_up_deck(deck);
-   
+    bool is_user_turn = true;
+    std::string u_input;
+
     user_cards.push_back(Game::deal_card(deck));
     user_cards.push_back(Game::deal_card(deck));
 
-    bool is_user_turn = true;
-    std::string u_input;
     while (true)
     {
         if(is_user_turn)
@@ -47,13 +46,22 @@ int main()
             }
             if(Game::get_card_total(computer_cards) > Game::get_card_total(user_cards))
             {
-                std::cout << "The dealer's total is: " << Game::get_card_total(computer_cards) << ", while yours is: " << Game::get_card_total(user_cards) << std::endl;
-                std::cout << "Therefore, the computer wins!\n";
+                std::cout << "The dealer's total is: "
+            	<< Game::get_card_total(computer_cards)
+            	<< ", while yours is: "
+            	<< Game::get_card_total(user_cards) << std::endl;
+
+            	std::cout << "Therefore, the computer wins!\n";
                 break;
             }
             if(Game::get_card_total(computer_cards) == Game::get_card_total(user_cards))
             {
-                std::cout << "The dealer's total is: " << Game::get_card_total(computer_cards) << ", while yours is: " << Game::get_card_total(user_cards) << std::endl;
+                std::cout << "The dealer's total is: "
+            	<< Game::get_card_total(computer_cards)
+            	<< ", while yours is: "
+            	<< Game::get_card_total(user_cards)
+            	<< std::endl;
+
                 std::cout << "Therefore, the computer wins!\n";
                 break;
             }
